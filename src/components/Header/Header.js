@@ -1,18 +1,40 @@
-import React from 'react';
-import styled from 'styled-components/macro';
-import { Menu, Search, User } from 'react-feather';
+import React from "react";
+import styled from "styled-components/macro";
+import { Menu, Search, User } from "react-feather";
 
-import { QUERIES } from '../../constants';
+import { QUERIES } from "../../constants";
 
-import MaxWidthWrapper from '../MaxWidthWrapper';
-import Logo from '../Logo';
-import Button from '../Button';
+import MaxWidthWrapper from "../MaxWidthWrapper";
+import Logo from "../Logo";
+import Button from "../Button";
 
 const Header = () => {
   return (
-    <header>
-      <SuperHeader>
-        <Row>
+    <>
+      <MobileHeader>
+        <SuperHeader>
+          <Row>
+            <ActionGroup>
+              <button>
+                <Search size={24} />
+              </button>
+              <button>
+                <Menu size={24} />
+              </button>
+            </ActionGroup>
+            <ActionGroup>
+              <button>
+                <User size={24} />
+              </button>
+            </ActionGroup>
+          </Row>
+        </SuperHeader>
+        <MainHeader>
+          <Logo />
+        </MainHeader>
+      </MobileHeader>
+      <MaxWidthWrapper>
+        <DesktopHeader>
           <ActionGroup>
             <button>
               <Search size={24} />
@@ -21,19 +43,49 @@ const Header = () => {
               <Menu size={24} />
             </button>
           </ActionGroup>
-          <ActionGroup>
-            <button>
-              <User size={24} />
-            </button>
-          </ActionGroup>
-        </Row>
-      </SuperHeader>
-      <MainHeader>
-        <Logo />
-      </MainHeader>
-    </header>
+          <MainHeader>
+            <Logo />
+          </MainHeader>
+          <DesktopSubscribe>
+            <Button>Subscribe</Button>
+            <a href="/">Already a subscriber?</a>
+          </DesktopSubscribe>
+        </DesktopHeader>
+      </MaxWidthWrapper>
+    </>
   );
 };
+
+const MobileHeader = styled.header`
+  @media ${QUERIES.laptopAndUp} {
+    display: none;
+  }
+`;
+const DesktopHeader = styled.header`
+  display: none;
+
+  @media ${QUERIES.laptopAndUp} {
+    display: flex;
+    justify-content: space-between;
+  }
+`;
+
+const DesktopSubscribe = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  & a {
+    text-decoration: underline;
+    color: var(--color-gray-700);
+    font-size: 0.8em;
+  }
+`;
+// const Button = styled.button`
+//   background-color: var(--color-primary);
+//   color: var(--color-white);
+// `;
 
 const SuperHeader = styled.div`
   padding: 16px 0;
