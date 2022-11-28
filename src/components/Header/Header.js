@@ -76,7 +76,7 @@ const DesktopSubscribe = styled.div`
   justify-content: center;
   align-items: center;
   gap: 8px;
-  & a {
+  a {
     text-decoration: underline;
     color: var(--color-gray-700);
     font-size: 0.8em;
